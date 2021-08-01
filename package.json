@@ -33,7 +33,7 @@
     "ios": "cd example && npm run ios"
   },
   "peerDependencies": {
-    "react-native": "^0.41.2"
+    "react-native": "^0.60.13"
   },
   "devDependencies": {
     "@types/react-native": "^0.60.13",
