@@ -32,9 +32,6 @@
     "android": "cd example && npm run android",
     "ios": "cd example && npm run ios"
   },
-  "peerDependencies": {
-    "react-native": "^0.60.13"
-  },
   "devDependencies": {
     "@types/react-native": "^0.60.13",
     "@typescript-eslint/eslint-plugin": "^2.0.0",
