@@ -18,6 +18,7 @@ export class YandexPayment {
       SHOP_RETURN_URL: shop.returnUrl ? shop.returnUrl : 'https://custom.redirect.url/',
       SHOP_DESCRIPTION: shop.description,
       SHOP_APPLICATION_SCHEME: shop.applicationScheme ? shop.applicationScheme : '',
+      SHOP_APPLEPAY_MERCHANT_IDENTIFIER: shop.applePayMerchantIdentifier ? shop.applePayMerchantIdentifier : '',
       PAYMENT_AMOUNT: payment.amount,
       PAYMENT_CURRENCY: payment.currency,
       PAYMENT_TYPES_ARRAY: payment.types || [],

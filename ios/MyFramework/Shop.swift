@@ -6,5 +6,6 @@ struct Shop {
     let name: String
     let description: String
     let returnUrl: String
+    let applePayMerchantIdentifier: String
     let applicationScheme: String
 }
