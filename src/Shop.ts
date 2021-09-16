@@ -4,4 +4,5 @@ export interface Shop {
   name: string
   description: string
   returnUrl?: string
+  applicationScheme?: string
 }
