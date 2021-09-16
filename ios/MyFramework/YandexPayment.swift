@@ -50,8 +50,7 @@ class YandexPayment: RCTViewManager, TokenizationModuleOutput {
             name: map["SHOP_NAME"] as! String,
             description: map["SHOP_DESCRIPTION"] as! String,
             returnUrl: map["SHOP_RETURN_URL"] as! String,
-            applePayMerchantIdentifier: map["SHOP_APPLEPAY_MERCHANT_IDENTIFIER"] as! String,
-            applicationScheme: map["SHOP_APPLICATION_SCHEME"] as! String
+            applePayMerchantIdentifier: map["SHOP_APPLEPAY_MERCHANT_IDENTIFIER"] as! String
         )
         
         let payment = Payment(
@@ -70,8 +69,7 @@ class YandexPayment: RCTViewManager, TokenizationModuleOutput {
             tokenizationSettings: TokenizationSettings(paymentMethodTypes: PaymentMethodTypes(rawValue: payment.types)),
             applePayMerchantIdentifier: shop.applePayMerchantIdentifier,
             savePaymentMethod: payment.savePaymentMethod,
-            moneyAuthClientId: payment.moneyAuthClientId,
-            applicationScheme: shop.applicationScheme
+            moneyAuthClientId: payment.moneyAuthClientId
         )
         let inputData: TokenizationFlow = .tokenization(moduleInputData)
         
