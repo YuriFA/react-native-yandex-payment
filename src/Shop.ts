@@ -5,5 +5,4 @@ export interface Shop {
   description: string
   returnUrl?: string
   applePayMerchantIdentifier?: string
-  applicationScheme?: string
 }
