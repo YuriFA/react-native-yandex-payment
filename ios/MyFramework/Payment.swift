@@ -7,5 +7,6 @@ struct Payment {
     let currency: Currency
     let types: Set<YooKassaPayments.PaymentMethodType>
     let savePaymentMethod: YooKassaPayments.SavePaymentMethod
-    let moneyAuthClientId: String
+    let moneyAuthClientId: String?
+    let userPhoneNumber: String?
 }
