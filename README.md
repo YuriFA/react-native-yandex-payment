@@ -12,6 +12,8 @@ iOS library: [5.4.1](https://github.com/yoomoney/yookassa-payments-swift/tree/57
 Usage
 =====
 
+[How to get client id](https://github.com/yoomoney/yookassa-payments-swift/tree/57a7c596c5069cc322b3ab18936970f240df0699#%D0%BA%D0%B0%D0%BA-%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D1%82%D1%8C-client-id-%D1%86%D0%B5%D0%BD%D1%82%D1%80%D0%B0-%D0%B0%D0%B2%D1%82%D0%BE%D1%80%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D0%B8-%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%8B-%D1%8Emoney)
+
 ```ts
 import YandexPayment, { Shop, Payment, PaymentToken } from 'react-native-yandex-payment';
 
@@ -28,7 +30,7 @@ const payment: Payment = {
     currency: 'RUB', // 'RUB' | 'USD' | 'EUR'
     types: ['BANK_CARD'], // 'YOO_MONEY' | 'BANK_CARD' | 'SBERBANK' | 'PAY'. PAY - means Google Pay or Apple Pay
     savePaymentMethod: 'USER_SELECTS', // 'ON' | 'OFF' | 'USER_SELECTS'
-    yooKassaClientId: '', // [How to get client id](https://github.com/yoomoney/yookassa-payments-swift/tree/57a7c596c5069cc322b3ab18936970f240df0699#%D0%BA%D0%B0%D0%BA-%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D1%82%D1%8C-client-id-%D1%86%D0%B5%D0%BD%D1%82%D1%80%D0%B0-%D0%B0%D0%B2%D1%82%D0%BE%D1%80%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D0%B8-%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%8B-%D1%8Emoney)
+    yooKassaClientId: '', // See how to get client id
 }
 const paymentToken: PaymentToken = await YandexPayment.show(shop, payment)
 console.warn(paymentToken.token) // payment token
