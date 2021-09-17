@@ -5,4 +5,5 @@ export interface Shop {
   description: string
   returnUrl?: string
   applePayMerchantIdentifier?: string
+  customColor?: string
 }

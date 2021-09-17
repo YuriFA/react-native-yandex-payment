@@ -5,7 +5,7 @@ Library for implement Yandex Checkout functionality on React Native environment.
 
 Android library: [5.1.2](https://github.com/yandex-money/yandex-checkout-android-sdk)
 
-iOS library: [5.2.0](https://github.com/yandex-money/yandex-checkout-payments-swift)
+iOS library: [5.4.1](https://github.com/yoomoney/yookassa-payments-swift/tree/57a7c596c5069cc322b3ab18936970f240df0699)
 
 ![v1](./.github/v1.gif)
 
@@ -20,11 +20,15 @@ const shop: Shop = {
     token: 'test_SHOP_TOKEN',
     name: 'Shop name',
     description: 'Shop description',
+    applePayMerchantIdentifier: 'merchant.com.site',
+    customColor: 'rgba(0, 0, 0, 1)'
 }
 const payment: Payment = {
     amount: 399.99,
     currency: 'RUB', // 'RUB' | 'USD' | 'EUR'
-    types: ['BANK_CARD'], // 'YANDEX_MONEY' | 'BANK_CARD' | 'SBERBANK' | 'PAY'. PAY - means Google Pay or Apple Pay
+    types: ['BANK_CARD'], // 'YOO_MONEY' | 'BANK_CARD' | 'SBERBANK' | 'PAY'. PAY - means Google Pay or Apple Pay
+    savePaymentMethod: 'USER_SELECTS', // 'ON' | 'OFF' | 'USER_SELECTS'
+    yooKassaClientId: '', // [How to get client id](https://github.com/yoomoney/yookassa-payments-swift/tree/57a7c596c5069cc322b3ab18936970f240df0699#%D0%BA%D0%B0%D0%BA-%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B8%D1%82%D1%8C-client-id-%D1%86%D0%B5%D0%BD%D1%82%D1%80%D0%B0-%D0%B0%D0%B2%D1%82%D0%BE%D1%80%D0%B8%D0%B7%D0%B0%D1%86%D0%B8%D0%B8-%D1%81%D0%B8%D1%81%D1%82%D0%B5%D0%BC%D1%8B-%D1%8Emoney)
 }
 const paymentToken: PaymentToken = await YandexPayment.show(shop, payment)
 console.warn(paymentToken.token) // payment token
@@ -35,11 +39,11 @@ Install
 =======
 
 ```bash
-npm install react-native-yandex-payment --save 
+npm install react-native-yandex-payment@https://github.com/YuriFA/react-native-yookassa-payment --save 
 ```
 or
 ```bash
-yarn add react-native-yandex-payment
+yarn add react-native-yandex-payment@https://github.com/YuriFA/react-native-yookassa-payment
 ```
 
 Android
@@ -82,17 +86,20 @@ android {
 iOS
 ---
 
+See instructions in [YooKassa SDK README](https://github.com/yoomoney/yookassa-payments-swift/tree/57a7c596c5069cc322b3ab18936970f240df0699#cocoapods)
 Update your `ios/Podfile`
 ```ruby
 target 'MyApp' do
 
     # ... other dependencies
 
-  # Yandex payment
+  # Yandex (YooKassa) payment
+  pod 'MyFramework', :path => '../node_modules/react-native-yandex-payment/ios/MyFramework.podspec'
+
   pod 'YooKassaPayments', 
   :build_type => :dynamic_framework,
   :git => 'https://github.com/yoomoney/yookassa-payments-swift.git',
-  :tag => '5.2.0'
+  :tag => '5.4.1'
 
 end
 ```
@@ -126,10 +133,10 @@ Roadmap
 - [x] Android support
 - [x] iOS support
 - [x] Bank card, Yandex Wallet, Sberbank, Google Pay and Apple Pay payment types support (you should properly configure your shop for this)
-- [ ] Change color scheme
+- [x] Change color scheme
 - [ ] Configure test environment
 
-If you have a question or need specific feature, feel free to [open an issue](https://github.com/lamantin-group/react-native-yandex-payment/issues/new) or create pull request.
+If you have a question or need specific feature, feel free to [open an issue](https://github.com/YuriFA/react-native-yookassa-payment/issues/new) or create pull request.
 
 
 ---

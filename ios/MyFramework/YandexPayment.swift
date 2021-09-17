@@ -45,13 +45,17 @@ class YandexPayment: RCTViewManager, TokenizationModuleOutput {
         }
         self.storedResolver = resolver
         self.storedRejecter = rejecter
+        
+        let customizationColor = map["SHOP_CUSTOM_COLOR_RGBA"] as? String
+        
         let shop = Shop(
             id: map["SHOP_ID"] as! String,
             token: map["SHOP_TOKEN"] as! String,
             name: map["SHOP_NAME"] as! String,
             description: map["SHOP_DESCRIPTION"] as! String,
-            returnUrl: map["SHOP_RETURN_URL"] as! String,
-            applePayMerchantIdentifier: map["SHOP_APPLEPAY_MERCHANT_IDENTIFIER"] as! String
+            returnUrl: map["SHOP_RETURN_URL"] as? String,
+            applePayMerchantIdentifier: map["SHOP_APPLEPAY_MERCHANT_IDENTIFIER"] as? String,
+            customizationSettingsColor: (customizationColor != nil) ? UIColorFromString(string: customizationColor!) : nil
         )
         
         let payment = Payment(
@@ -59,7 +63,8 @@ class YandexPayment: RCTViewManager, TokenizationModuleOutput {
             currency: stringToCurrency(string: map["PAYMENT_CURRENCY"] as! String),
             types: arrayToSetPaymentTypes(nsArray: (map["PAYMENT_TYPES_ARRAY"] as! NSArray)),
             savePaymentMethod: stringToSavePaymentType(string: map["PAYMENT_SAVE_TYPE"] as! String),
-            moneyAuthClientId: map["PAYMENT_YOO_MONEY_CLIENT_ID"] as! String
+            moneyAuthClientId: map["PAYMENT_YOO_MONEY_CLIENT_ID"] as? String,
+            userPhoneNumber: map["PAYMENT_USER_PHONE"] as? String
         )
         
         let moduleInputData = TokenizationModuleInputData(
@@ -69,6 +74,8 @@ class YandexPayment: RCTViewManager, TokenizationModuleOutput {
             amount: Amount(value: Decimal(payment.amount), currency: payment.currency),
             tokenizationSettings: TokenizationSettings(paymentMethodTypes: PaymentMethodTypes(rawValue: payment.types)),
             applePayMerchantIdentifier: shop.applePayMerchantIdentifier,
+            userPhoneNumber: payment.userPhoneNumber,
+            customizationSettings: shop.customizationSettingsColor != nil ? CustomizationSettings(mainScheme: shop.customizationSettingsColor!) : CustomizationSettings(),
             savePaymentMethod: payment.savePaymentMethod,
             moneyAuthClientId: payment.moneyAuthClientId
         )
@@ -175,4 +182,14 @@ class YandexPayment: RCTViewManager, TokenizationModuleOutput {
     func stringToCurrency(string: String) -> Currency {
         return Currency(rawValue: string)!
     }
+    
+    func UIColorFromString(string: String) -> UIColor {
+        let componentsString = string.replacingOccurrences(of: "rgba(", with: "").replacingOccurrences(of: ")", with: "").replacingOccurrences(of: ", ", with: ",")
+        let components = componentsString.split(separator: ",", maxSplits: 3)
+        return UIColor(red: CGFloat((components[0] as NSString).floatValue),
+                     green: CGFloat((components[1] as NSString).floatValue),
+                      blue: CGFloat((components[2] as NSString).floatValue),
+                     alpha: CGFloat((components[3] as NSString).floatValue))
+    }
 }
+
