@@ -112,7 +112,6 @@ class YandexPayment: RCTViewManager, TokenizationModuleOutput {
     func didFinish(on module: TokenizationModuleInput, with error: YooKassaPaymentsError?) {
         DispatchQueue.main.async {
             if let rejecter = self.storedRejecter {
-                NSLog("123")
                 rejecter("problems", "", error)
             }
             self.storedResolver = nil
