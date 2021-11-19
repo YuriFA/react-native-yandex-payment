@@ -103,6 +103,17 @@ class YandexPayment: RCTViewManager, TokenizationModuleOutput {
         }
     }
     
+    func didSuccessfullyConfirmation(paymentMethodType: YooKassaPayments.PaymentMethodType) {
+        DispatchQueue.main.async {
+            if let resolver = self.storedResolver {
+                resolver("RESULT_OK")
+            }
+            self.storedResolver = nil
+            self.storedRejecter = nil
+            self.viewController?.dismiss(animated: true)
+        }
+    }
+    
     func tokenizationModule(_ module: TokenizationModuleInput,
                             didTokenize token: YooKassaPayments.Tokens,
                             paymentMethodType: YooKassaPayments.PaymentMethodType) {
