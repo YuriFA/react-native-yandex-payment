@@ -70,12 +70,12 @@ class YandexPayment: RCTViewManager, TokenizationModuleOutput {
             moneyAuthClientId: payment.moneyAuthClientId
         )
         let inputData: TokenizationFlow = .tokenization(moduleInputData)
-        viewController = TokenizationAssembly.makeModule(
-            inputData: inputData,
-            moduleOutput: self
-        )
         
         DispatchQueue.main.async {
+            self.viewController = TokenizationAssembly.makeModule(
+                inputData: inputData,
+                moduleOutput: self
+            )
             let rootViewController = UIApplication.shared.keyWindow!.rootViewController!
             rootViewController.present(self.viewController!, animated: true, completion: nil)
         }
