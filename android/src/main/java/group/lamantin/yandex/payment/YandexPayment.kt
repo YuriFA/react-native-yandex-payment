@@ -42,7 +42,7 @@ class YandexPayment(reactContext: ReactApplicationContext) : ReactContextBaseJav
                     null,
                     null,
                     GooglePayParameters(),
-                    payment.yooKassaClientId,
+                    payment.yooKassaClientId
             )
 
             // expose to JS
@@ -100,9 +100,9 @@ class YandexPayment(reactContext: ReactApplicationContext) : ReactContextBaseJav
                             }
 
                             if (result.resultCode == Checkout.RESULT_ERROR) {
-                                promise.reject(RESULT_ERROR, map)
+                                promise.reject(RESULT_ERROR, map.toString())
                             } else {
-                                promise.reject(RESULT_3DS_CLOSED, map)
+                                promise.reject(RESULT_3DS_CLOSED, map.toString())
                             }
                         }
                     })
