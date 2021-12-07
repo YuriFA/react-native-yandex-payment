@@ -54,10 +54,9 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.aar"])
-    implementation(name:'ThreatMetrix-Android-SDK-5.4-73', ext:'aar')
+//    implementation(name:'ThreatMetrix-Android-SDK-5.4-73', ext:'aar')
     implementation 'ru.yoomoney.sdk.kassa.payments:yookassa-android-sdk:6.4.0'
     // for 6.4.2 and later ThreatMetrix Android SDK 6.2.97.aar is required
-
 //  as my project doesn't require yoomoney paymend method (oly card), this lib apparently isn't necessary
 //    implementation "ru.yoo.sdk.auth:auth:1.0.51"
     implementation 'com.facebook.react:react-native:+'
